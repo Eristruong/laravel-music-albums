@@ -25,7 +25,7 @@
                     <a href="{{url('/album/'.$song->album->slug)}}"> {{$song->album->name}}</a>
                        </p>
                     @endif
-                    <p><b>Added:</b>  {{mydate($song->created_at)}}</p>
+                    <p><b>Added:</b>  {{date($song->created_at)}}</p>
                 <p><b>Hints:</b> {{$song->views}}</p>
                 <p>
                         <a href="#" class="btn btn-xs oneMusic-btn btn-2">Save to device</a>

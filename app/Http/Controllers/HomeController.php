@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Music;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home2');
+        $musics = Music::orderBy('id', 'DESC')->take(6)->get();
+        $latest = Music::all()->last();
+        return view('home2', compact('musics','latest'));
+    }
+    public function music(){
+        $songs = Music::paginate('15');
+
+        return view('music.index', compact('songs'));
+    }
+
+    public function showmusic($slug){
+        $song = Music::where('slug', $slug)->firstOrFail();
+        //Hints
+        $song->views+=1;
+        $song->save();
+        $musics = Music::orderBy('id', 'DESC')->take(5)->where('id', '!=', $song->id)->get();
+        return view('music.show', compact('song', 'musics'));
+    }
+
+
+    public function find(Request $request)
+    {
+        
+        $songs = Music::orwhere('title','like', '%'.$request->keywords.'%')->orwhere('content','like', '%'.$request->keywords.'%')->get();
+        return view('music.find', compact('songs'));
     }
 }

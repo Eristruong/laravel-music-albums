@@ -40,26 +40,52 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" name="name", id = "name" class="form-control" placeholder="username">
-
+						<input type="text" name="name", id = "name" class="form-control @error('name') is-invalid @enderror" placeholder="username">
+						@error('name')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" name="email", id = "email" class="form-control" placeholder="Email">
-
+						<input type="text" name="email", id = "email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+						@error('email')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 					</div>
 
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="password" id="password" class="form-control" placeholder="password">
+						
+						<input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+						@error('password')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						
+						<input type="password" name="password_confirmation" id="password-confirm" class="form-control @error('password') is-invalid @enderror" placeholder="new-password">
+						@error('password')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-black">Register</button>
+						<button type="submit" class="btn btn-black"> {{ __('Register') }}</button>
 					</div>
 				</form>
 			</div>

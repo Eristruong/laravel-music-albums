@@ -31,26 +31,35 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="" method="POST">
+				<form method="POST" action="{{ route('login') }}">
                     @csrf
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" name="email", id = "email" class="form-control" placeholder="username">
-
+						<input type="text" name="email", id = "email"  class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+						@error('email')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="password" id="password" class="form-control" placeholder="password">
+						<input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+						@error('password')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 					</div>
 					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
+						<input type="checkbox">{{ __('Remember Me') }}
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-black">Login</button>
+						<button type="submit" class="btn btn-black">{{ __('Login') }}</button>
 					</div>
 				</form>
 			</div>
@@ -59,7 +68,7 @@
 					Don't have an account?<a href="#">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
-					<a href="">Register</a>
+					<a href="{{ route('register') }}">Register</a>
 @csrf
 				</div>
 			</div>

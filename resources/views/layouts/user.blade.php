@@ -10,10 +10,10 @@
 
     <!-- Title -->
     <title>{{env('APP_NAME')}} - @yield('title')</title>
-    @toastr_css
+    {{-- @toastr_css
     @jquery
     @toastr_js
-    @toastr_render
+    @toastr_render --}}
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="{{asset('vendor/main/stylecss.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/main/css/bootstrap.min.css')}}">
+    
 </head>
 
 <body>

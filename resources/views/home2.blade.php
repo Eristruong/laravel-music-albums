@@ -219,14 +219,14 @@
     <!-- ##### Buy Now Area Start ##### -->
 
     <!-- ##### Buy Now Area End ##### -->
-
+    @if(count($musics) > 0)
     <!-- ##### Featured Artist Area Start ##### -->
     <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/bg-4.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="{{ asset ('/img/1.jpg') }}" alt="">
+                        <img src="images/thumbnails/{{$latest->image}}" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -234,23 +234,15 @@
                         <!-- Section Heading -->
                         <div class="section-heading white text-left mb-30">
                             <p>See what’s new</p>
-                            <h2>Buy What’s New</h2>
+                            <h2>{{$latest->title}}</h2>
                         </div>
-                        <p>I have this thing where I get older but just never wiser
-                            Midnights become my afternoons
-                            When my depression works the graveyard shift
-                            All of the people I've ghosted stand there in the room
-                            I should not be left to my own devices
-                            They come with prices and vices
-                            I end up in crisis tale as old as time
-                            I wake up screaming from dreaming
-                            One day I'll watch as you're leaving...</p>
+                        <p>{{$latest->content}}</p>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>01. Taylor Swift - Anti-Hero</p>
+                                <p>{{$latest->title}}</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="music/music1.mp3">
+                                <source src="songs/{{$latest->song}}">
                             </audio>
                         </div>
                     </div>
@@ -259,7 +251,7 @@
         </div>
     </section>
     <!-- ##### Featured Artist Area End ##### -->
-
+    @endif
     <!-- ##### Miscellaneous Area Start ##### -->
     <section class="miscellaneous-area section-padding-100-0">
         <div class="container">
@@ -348,102 +340,27 @@
                             <p>See what’s new</p>
                             <h2>New Hits</h2>
                         </div>
-
+                        @if(count($musics) > 0)
+                        @foreach($musics as $music)
                         <!-- Single Top Item -->
+                        <a href="{{url('/music/'.$music->slug)}}">
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b1.jpg') }}"  alt="">
+                                    <img src="images/thumbnails/{{$music->image}}"  alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>Unholy</h6>
-                                    <p>Sam Smith</p>
+                                    <h6>{{Str::limit($music->title, 20)}}</h6>
+                                    <p>{{$music->artist}}</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="music/music2.mp3">
+                                <source src="{{url('/songs/'.$music->song)}}">
                             </audio>
                         </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b2.jpg') }}"  alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Ready For It? </h6>
-                                    <p>Taylor Swift</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="music/music3.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b3.jpg') }}"  alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>When the party's over</h6>
-                                    <p>Billie Eilish</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="music/music4.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b4.jpg') }}"  alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>SICKO MODE</h6>
-                                    <p>Travis Scott</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="music/music5.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b5.jpg') }}"  alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Born Again </h6>
-                                    <p>Rihanna</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="music/music6.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="{{ asset ('/img/b6.jpg') }}"  alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Shape of You </h6>
-                                    <p>Ed Sheeran</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="music/music7.mp3">
-                            </audio>
-                        </div>
+                    </a>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
 
